@@ -1,1 +1,4 @@
 /target
+
+# don't include the varjo sdk
+/varjo-sdk
