@@ -1,6 +1,5 @@
 use crate::varjo_types::*;
 
-
 #[derive(Debug)]
 pub struct Varjo {
     lib: libloading::Library,
@@ -79,7 +78,9 @@ impl Varjo {
 
     pub fn gaze_init(&mut self) -> Result<(), String> {
         if !self.is_initalized {
-            return Err(String::from("Trying to init gaze on an uninitialized system."));
+            return Err(String::from(
+                "Trying to init gaze on an uninitialized system.",
+            ));
         }
 
         let func: libloading::Symbol<unsafe extern "C" fn(i64)> = unsafe {
@@ -126,9 +127,7 @@ impl Varjo {
                 .map_err(|e| e.to_string())?
         };
 
-        let gaze = unsafe {
-            func(self.session_ptr)
-        };
+        let gaze = unsafe { func(self.session_ptr) };
 
         Ok(gaze)
     }
